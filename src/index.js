@@ -1,10 +1,17 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const {sequelize, port} = require('./util/database');
+const app = express();
 
-server.use(express.json())
+sequelize.authenticate().then(() => {
+    console.log('Conectado com sucesso!');
+}).catch((error) => {
+    console.log('Erro ao conectar: ', error);
+});
 
+app.get('/teste-conexao', (req, res) => {
+    res.send('Servidor conectado com sucesso!');
+})
 
-
-
-
-server.listen()
+app.listen(port, () => {
+    console.log(`Servidor rodando no localhost:${port}`);
+})
