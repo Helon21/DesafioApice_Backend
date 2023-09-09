@@ -1,60 +1,65 @@
-const { Sequelize, Op, Model, DataTypes } = require("sequelize");
-const sequelize = require('../configs/database');
-const Pessoa = require('../models/Pessoa');
+const Sequelize = require('sequelize');
+const pessoa = require('../models/Pessoa');
 
 
 class PessoaRepository {
 
+    constructor(PessoaModel = pessoa){
+        this.PessoaModel = PessoaModel;
+    }
+
+
     async BuscarTodos(){
         try {
-            const pessoas = await Pessoa.findAll();
+            const pessoas = await this.PessoaModel.findAll();
             return pessoas;
         } catch (error) {
-            throw new Error('Nenhum cadastro existente' + error.message);
+            throw new Error('Nenhum registro foi encontrado' + error.message);
         }
     }
 
     async BuscarPorId(id){
         try {
-            const pessoa = await Pessoa.findByPk(id);
+            const pessoa = await this.PessoaModel.findByPk(id);
             return pessoa;
         } catch (error) {
-            throw error;
+            throw new Error('Não existe nenhum registro vinculado a esse ID' + error.message);
         }
     }
 
-    async Cadastrar(pessoa){
+    async Cadastrar(pessoaData){
         try {
-            const novaPessoa = await Pessoa.create(pessoa)
-            return novaPessoa;
+            return await this.PessoaModel.create(pessoaData)
         } catch (error) {
-            throw error;
+            if(error.name === 'SequelizeUniqueConstraintError'){
+                throw new Error('Erro ao cadastrar pessoa: Um ou mais campos duplicados')
+            }
+            throw new Error('Erro ao cadastrar pessoa');
         }
     }
 
     async AlterarCadastro(id, pessoaData){
         try {
-            const pessoa = await Pessoa.update(id);
+            const pessoa = await this.PessoaModel.findByPk(id);
             if(!pessoa){
                 throw new Error('Pessoa não encontrada');
             }
-            await pessoa.update(pessoaData);
-            return pessoa;
+            return await pessoa.update(pessoaData);
         } catch (error) {
-            throw error;
+            throw new Error('Não foi possível alterar o cadastro da pessoa, ID não encontrado');
         }
     }
 
     async Excluir(id){
         try {
-            const pessoa = await Pessoa.findByPk(id);
+            const pessoa = await this.PessoaModel.findByPk(id);
             if(!pessoa){
                 throw new Error('Pessoa não encontrada');
             }
             await pessoa.destroy();
-            return true;
+            return pessoa;
         } catch (error) {
-            throw error;
+            throw new Error('Não foi possível excluir a pesssoa, ID não encontrado');
         }
     }
 

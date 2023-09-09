@@ -1,7 +1,6 @@
 const express = require('express');
 const sequelize = require('./util/database');
 const app = express();
-const pessoaRoute = require('./Rotas/PessoaRota')
 
 sequelize.authenticate().then(() => {
     console.log('Conectado com sucesso!');
@@ -13,6 +12,3 @@ sequelize.authenticate().then(() => {
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000')
 });
-
-app.use(express.json());
-app.use('/api', pessoaRoute)
