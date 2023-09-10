@@ -1,11 +1,11 @@
 const express = require('express');
-const pessoaRouter = express.Router();
 const pessoaController = require('../controller/PessoaController');
 
-pessoaRouter.get('/pessoas/buscar', pessoaController.BuscarTodos);
-pessoaRouter.get('/pessoas/buscar/:id', pessoaController.BuscarPorId);
-pessoaRouter.post('/pessoas/cadastrar', pessoaController.CadastrarPessoa);
-pessoaRouter.put('/alterarPessoas/:id', pessoaController.alterarCadastroPessoa);
-pessoaRouter.delete('/excluirPessoas/:id', pessoaController.ExcluirPessoa);
+const router = express.Router();
 
-module.exports = pessoaRouter;
+router.get('/pessoas/listar', pessoaController.listar);
+router.post('/pessoas/cadastrar', pessoaController.cadastrar);
+router.put('/pessoas/atualizar/:id', pessoaController.atualizarCadastro);
+router.delete('/pessoas/deletar/:id', pessoaController.deletar);
+
+module.exports = router;
