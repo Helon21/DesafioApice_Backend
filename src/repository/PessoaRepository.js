@@ -31,12 +31,14 @@ class PessoaRepository {
         try {
             return await this.PessoaModel.create(pessoaData)
         } catch (error) {
+            console.error('Erro ao cadastrar pessoa:', error);
             if(error.name === 'SequelizeUniqueConstraintError'){
                 throw new Error('Erro ao cadastrar pessoa: Um ou mais campos duplicados')
             }
             throw new Error('Erro ao cadastrar pessoa');
         }
     }
+    
 
     async AlterarCadastro(id, pessoaData){
         try {

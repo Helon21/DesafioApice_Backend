@@ -45,7 +45,6 @@ const Pessoa = sequelize.define('Pessoa', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-
     },
 })
 

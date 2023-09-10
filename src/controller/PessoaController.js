@@ -1,5 +1,4 @@
-const PessoaService = require("../service/PessoaService");
-const pessoaService = new PessoaService();
+const pessoaService = require("../service/PessoaService");
 
 async function BuscarTodos(req, res){
     try {
