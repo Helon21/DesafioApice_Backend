@@ -1,18 +1,17 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database')
+const { DataTypes, Sequelize, UniqueConstraintError } = require('sequelize');
+const sequelize = require('../config/database');
 
 const Pessoa = sequelize.define('Pessoa', {
+    
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER, 
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false,
-        unique: true,
+        allowNull: false, 
     },
     nome: {
         type: DataTypes.STRING,
         allowNull: false,
-
     },
     cidade : {
         type: DataTypes.STRING,
@@ -33,10 +32,12 @@ const Pessoa = sequelize.define('Pessoa', {
     numero: {
         type: DataTypes.INTEGER,
         allowNull: false,
+
     },
     complemento: {
         type: DataTypes.STRING,
         allowNull: false,
+
     },
     telefone: {
         type: DataTypes.STRING,

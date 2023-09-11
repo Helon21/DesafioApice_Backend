@@ -1,13 +1,13 @@
-// index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/database'); 
 const pessoaRoutes = require('./Rotas/PessoaRota');
+const cidadeRoutes = require('./Rotas/CidadeRota');
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/api', pessoaRoutes);
+app.use('/api', pessoaRoutes, cidadeRoutes);
 
 sequelize.sync().then(() => {
   console.log('Conexão com o banco de dados estabelecida com sucesso!');

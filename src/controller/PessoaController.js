@@ -12,10 +12,18 @@ module.exports = {
 
     async cadastrar(req, res){
         try {
+            const pessoaExistente = await Pessoa.findOne({
+                where: {
+                    nome: req.body.nome
+                }
+            });
+            if(pessoaExistente){
+                return res.status(400).json({error: "Nome já cadastrado"});
+            };
             const novaPessoa = await Pessoa.create(req.body);
             res.status(201).json(novaPessoa);
         } catch (error) {
-            res.status(500).json({error: "Erro ao cadastrar pessoa"});
+            res.status(500).json({error: "Ocorreu um erro ao cadastrar a pessoa"});
         }
     },
 
@@ -49,3 +57,4 @@ module.exports = {
     }
 
 }
+
