@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/database');
 
-const Cidade = sequelize.define('Cidade', {
+const cidade = sequelize.define('Cidade', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -18,4 +18,4 @@ const Cidade = sequelize.define('Cidade', {
     },
 })
 
-module.exports = Cidade;
+module.exports = cidade;

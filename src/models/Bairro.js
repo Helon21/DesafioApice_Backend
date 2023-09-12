@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database')
 
-const Bairro = sequelize.define('Bairro', {
+const bairro = sequelize.define('Bairro', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -14,4 +14,4 @@ const Bairro = sequelize.define('Bairro', {
     },
 })
 
-module.exports = Bairro;
+module.exports = bairro;

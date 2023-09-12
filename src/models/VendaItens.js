@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../util/database')
 
 
-const VendaItens = sequelize.define('VendaItens', {
+const vendaItens = sequelize.define('VendaItens', {
     id_venda: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -26,4 +26,4 @@ const VendaItens = sequelize.define('VendaItens', {
 
 })
 
-module.exports = VendaItens;
+module.exports = vendaItens;

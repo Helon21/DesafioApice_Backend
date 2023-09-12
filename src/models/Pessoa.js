@@ -1,7 +1,7 @@
-const { DataTypes, Sequelize, UniqueConstraintError } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Pessoa = sequelize.define('Pessoa', {
+const pessoa = sequelize.define('Pessoa', {
     
     id: {
         type: DataTypes.INTEGER, 
@@ -49,4 +49,4 @@ const Pessoa = sequelize.define('Pessoa', {
     },
 })
 
-module.exports = Pessoa;
+module.exports = pessoa;

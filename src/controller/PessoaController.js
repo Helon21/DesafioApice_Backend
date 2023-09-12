@@ -1,4 +1,4 @@
-const Pessoa = require('../models/Pessoa');
+const Pessoa = require('../models/pessoa');
 
 module.exports = {
     async listar(req, res){

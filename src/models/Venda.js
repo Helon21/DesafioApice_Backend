@@ -1,16 +1,20 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database')
 
-const Pessoa = require('./Pessoa');
+const Pessoa = require('./pessoa');
 
-const Venda = sequelize.define('Venda', {
+const venda = sequelize.define('Venda', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
     },
-    data: {
+    dataInicio: {
+        type: Sequelize.DATE,
+        allowNull: false,
+    },
+    dataFim: {
         type: Sequelize.DATE,
         allowNull: false,
     },
@@ -23,6 +27,8 @@ const Venda = sequelize.define('Venda', {
         },
     },
     
-})
+});
 
-module.exports = Venda;
+venda.belongTo(Pessoa, {foreignKey: 'pessoa_id'})
+
+module.exports = venda;
