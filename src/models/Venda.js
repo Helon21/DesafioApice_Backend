@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../config/database')
+const sequelize = require('../util/database')
+const formatarData = require('../util/formatarData');
 
 const Pessoa = require('./pessoa');
+
 
 const venda = sequelize.define('Venda', {
     id: {
@@ -11,11 +13,11 @@ const venda = sequelize.define('Venda', {
         allowNull: false,
     },
     dataInicio: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
     },
     dataFim: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
     },
     pessoa_id: {
@@ -23,11 +25,11 @@ const venda = sequelize.define('Venda', {
         allowNull: false,
         references: {
             model: Pessoa,
-            key: 'id',
+            key: 'id'
         },
     },
-    
 });
+
 
 venda.belongsTo(Pessoa, {foreignKey: 'pessoa_id'})
 

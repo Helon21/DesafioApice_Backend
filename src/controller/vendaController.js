@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+
 
 const Venda = require('../models/venda');
 const VendaItens = require('../models/vendaItens');
+const formatarData = require('../util/formatarData');
 
 module.exports = {
     async listar(req, res) {
@@ -25,18 +25,25 @@ module.exports = {
 
     async atualizarVenda(req, res){
         const {id} = req.params;
-
-        console.log(req.body);
+        const { dataInicio, dataFim, pessoa_id } = req.body;
 
         try {
+            console.log(`Tentando encontrar a venda com o ID ${id}`);
             const venda = await Venda.findByPk(id);
-            console.log(venda);
             if(!venda){
+                console.log(`Venda com o ID ${id} não encontrada`);
                 res.status(404).json({error: "Pessoa não encontrada"});
+                return;
             }
-            await venda.update(req.body);
+            console.log(`Venda com o ID ${id} encontrada. Tentando atualizar...`);
+            await venda.update({
+                dataInicio: formatarData(dataInicio),
+                dataFim: formatarData(dataFim),
+                pessoa_id
+            });
             res.status(201).json(venda);
         } catch (error) {
+            console.error(`Erro ao atualizar cadastro: ${error.message}`);
             res.status(500).json({error: "Erro ao atualizar cadastro"});
         }
     },

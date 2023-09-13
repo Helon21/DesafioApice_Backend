@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sequelize = require('./config/database'); 
+const sequelize = require('./util/database'); 
 const pessoaRoutes = require('./Rotas/PessoaRota');
 const cidadeRoutes = require('./Rotas/CidadeRota');
 const produtoRoutes = require('./Rotas/produtoRota')
