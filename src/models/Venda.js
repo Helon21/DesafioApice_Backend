@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../util/database')
+const sequelize = require('../config/database')
 
 const Pessoa = require('./pessoa');
 
@@ -29,6 +29,6 @@ const venda = sequelize.define('Venda', {
     
 });
 
-venda.belongTo(Pessoa, {foreignKey: 'pessoa_id'})
+venda.belongsTo(Pessoa, {foreignKey: 'pessoa_id'})
 
 module.exports = venda;

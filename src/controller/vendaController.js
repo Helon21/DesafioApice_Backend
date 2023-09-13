@@ -21,21 +21,23 @@ module.exports = {
         } catch (error) {
             res.status(500).json({ error: "Erro ao cadastrar a venda" });
         }
-
     },
 
-    async atualizarVenda(req, res) {
+    async atualizarVenda(req, res){
         const {id} = req.params;
+
+        console.log(req.body);
 
         try {
             const venda = await Venda.findByPk(id);
+            console.log(venda);
             if(!venda){
-                res.status(404).json({error: "Venda não encontrada"});
+                res.status(404).json({error: "Pessoa não encontrada"});
             }
             await venda.update(req.body);
             res.status(201).json(venda);
         } catch (error) {
-            res.status(500).json({error: "Erro ao atualizar a venda"});
+            res.status(500).json({error: "Erro ao atualizar cadastro"});
         }
     },
 
