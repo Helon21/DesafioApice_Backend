@@ -2,9 +2,37 @@
 
 const Venda = require('../models/venda');
 const VendaItens = require('../models/vendaItens');
+
 const formatarData = require('../util/formatarData');
 
 module.exports = {
+
+    async incluirItem(req, res) {
+        try {
+            const {id_venda, id_produto, quantidade, vr_venda} = req.body;
+
+            const vendaItem = await VendaItens.create({
+                id_venda,
+                id_produto,
+                quantidade,
+                vr_venda
+            });
+
+            const totalVrItem = vendaItem.sum('vr_venda', {
+                where: {id_venda}
+            });
+
+            const venda = await Venda.findByPk(id_venda);
+
+            venda.vr_venda = totalVrItem;
+            await venda.save();
+
+            res.status(201).json(vendaItem);
+        } catch (error) {
+            res.status(500).json({ error: "Erro ao cadastrar o item da venda" });
+        }
+    },
+
     async listar(req, res) {
         try {
             const vendas = await Venda.findAll();
@@ -28,14 +56,11 @@ module.exports = {
         const { dataInicio, dataFim, pessoa_id } = req.body;
 
         try {
-            console.log(`Tentando encontrar a venda com o ID ${id}`);
             const venda = await Venda.findByPk(id);
             if(!venda){
-                console.log(`Venda com o ID ${id} não encontrada`);
                 res.status(404).json({error: "Pessoa não encontrada"});
                 return;
             }
-            console.log(`Venda com o ID ${id} encontrada. Tentando atualizar...`);
             await venda.update({
                 dataInicio: formatarData(dataInicio),
                 dataFim: formatarData(dataFim),

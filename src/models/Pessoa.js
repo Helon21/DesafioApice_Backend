@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../util/database');
 
+const Bairro = require('./bairro');
+const Cidade = require('./cidade');
+
 const pessoa = sequelize.define('Pessoa', {
     
     id: {
@@ -47,6 +50,24 @@ const pessoa = sequelize.define('Pessoa', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-})
+    bairro_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Bairro, 
+            key: 'id' 
+        }
+    },
+    cidade_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Cidade, 
+            key: 'id' 
+        }
+    },
+   
+});
+
 
 module.exports = pessoa;

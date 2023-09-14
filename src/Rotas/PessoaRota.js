@@ -4,6 +4,7 @@ const pessoaController = require('../controller/pessoaController');
 const router = express.Router();
 
 router.get('/pessoa/listar', pessoaController.listar);
+router.get('/pessoa/listar-com-filtro', pessoaController.listarComFiltro);
 router.post('/pessoa/cadastrar', pessoaController.cadastrar);
 router.put('/pessoa/atualizar/:id', pessoaController.atualizarCadastro);
 router.delete('/pessoa/deletar/:id', pessoaController.deletar);

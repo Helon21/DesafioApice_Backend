@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database')
+const pessoa = require('./pessoa');
 
 const bairro = sequelize.define('Bairro', {
     id: {
@@ -12,6 +13,10 @@ const bairro = sequelize.define('Bairro', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-})
+    
+});
+
+
+
 
 module.exports = bairro;

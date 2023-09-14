@@ -1,6 +1,37 @@
 const Pessoa = require('../models/pessoa');
 
 module.exports = {
+
+    async listarComFiltro(req, res){
+        try {
+            const {nome, cidade, bairro} = req.query;
+
+            const filtro = {};
+
+            if(nome){
+                filtro.nome = nome;
+            }
+            if(cidade){
+                filtro.cidade = cidade;
+            }
+            if(bairro){
+                filtro.bairro = bairro;
+            }
+
+            const pessoas = await Pessoa.findAll({ where: filtro,
+            include: [
+                {model: bairro, as: 'bairroPessoa'},
+                {model: cidade, as: 'cidadePessoa'}
+            ]
+        });
+
+            res.status(200).json(pessoas);
+
+        } catch (error) {
+            res.status(500).json({error: "Erro ao listar pessoas"});
+        }
+    },
+
     async listar(req, res){
         try {
             const pessoas = await Pessoa.findAll();

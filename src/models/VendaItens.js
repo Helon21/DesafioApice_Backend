@@ -30,6 +30,11 @@ const vendaItens = sequelize.define('VendaItens', {
     vr_venda: {
         type: Sequelize.DECIMAL(10,2),
         allowNull: false,
+        get() {
+            const quantidade = this.getDataValue('quantidade');
+            const vr_venda = this.getDataValue('vr_venda');
+            return quantidade * vr_venda;
+        }
     },
 
 });

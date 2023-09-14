@@ -1,4 +1,4 @@
-const Cidade = require('../models/Cidade')
+const Cidade = require('../models/cidade');
 
 module.exports = {
     async listar(req, res){

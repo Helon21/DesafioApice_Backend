@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
+
 const sequelize = require('../util/database');
+
 
 const cidade = sequelize.define('Cidade', {
     id: {
@@ -16,6 +18,8 @@ const cidade = sequelize.define('Cidade', {
         type: Sequelize.CHAR(2),
         allowNull: false,
     },
-})
+});
+
+
 
 module.exports = cidade;
