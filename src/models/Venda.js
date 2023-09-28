@@ -18,14 +18,11 @@ const venda = sequelize.define('Venda', {
         allowNull: false,
     },  
 
-    dataInicio: {
+    dataVenda: {
         type: Sequelize.DATEONLY,
         allowNull: false,
     },
-    dataFim: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-    },
+    
     pessoa_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

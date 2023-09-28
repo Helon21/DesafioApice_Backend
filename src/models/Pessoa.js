@@ -4,7 +4,7 @@ const sequelize = require('../util/database');
 const Bairro = require('./bairro');
 const Cidade = require('./cidade');
 
-const pessoa = sequelize.define('Pessoa', {
+const Pessoa = sequelize.define('Pessoa', {
     
     id: {
         type: DataTypes.INTEGER, 
@@ -23,10 +23,6 @@ const pessoa = sequelize.define('Pessoa', {
         allowNull: false,
     },
     cidade : {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    bairro: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -78,4 +74,4 @@ const pessoa = sequelize.define('Pessoa', {
 
 
 
-module.exports = pessoa;
+module.exports = Pessoa;
