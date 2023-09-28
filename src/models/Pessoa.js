@@ -12,6 +12,12 @@ const pessoa = sequelize.define('Pessoa', {
         autoIncrement: true,
         allowNull: false, 
     },
+
+    codigo: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+
     nome: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -52,7 +58,7 @@ const pessoa = sequelize.define('Pessoa', {
     },
     bairro_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: Bairro, 
             key: 'id' 
@@ -60,7 +66,7 @@ const pessoa = sequelize.define('Pessoa', {
     },
     cidade_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: Cidade, 
             key: 'id' 
@@ -68,6 +74,8 @@ const pessoa = sequelize.define('Pessoa', {
     },
    
 });
+
+
 
 
 module.exports = pessoa;

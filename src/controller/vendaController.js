@@ -18,7 +18,7 @@ module.exports = {
                 vr_venda
             });
 
-            const totalVrItem = vendaItem.sum('vr_venda', {
+            const totalVrItem = await vendaItem.sum('vr_venda', {
                 where: {id_venda}
             });
 

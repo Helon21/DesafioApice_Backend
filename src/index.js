@@ -5,11 +5,15 @@ const pessoaRoutes = require('./Rotas/pessoaRota');
 const cidadeRoutes = require('./Rotas/CidadeRota');
 const produtoRoutes = require('./Rotas/produtoRota')
 const vendaRoutes = require('./Rotas/vendaRota');
+const bairroRoutes = require('./Rotas/bairroRota');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+
 
 app.use(bodyParser.json());
-app.use('/api', pessoaRoutes, cidadeRoutes, produtoRoutes, vendaRoutes);
+app.use('/api', pessoaRoutes, cidadeRoutes, produtoRoutes, vendaRoutes, bairroRoutes);
 
 sequelize.sync().then(() => {
   console.log('Conexão com o banco de dados estabelecida com sucesso!');
@@ -17,8 +21,8 @@ sequelize.sync().then(() => {
   console.error('Erro ao conectar ao banco de dados:', error);
 });
 
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+app.listen(4000, () => {
+    console.log('Servidor rodando na porta 4000');
 });
 
 const Bairro = require('./models/bairro');

@@ -1,3 +1,4 @@
+
 const Pessoa = require('../models/pessoa');
 
 module.exports = {
@@ -30,6 +31,15 @@ module.exports = {
         } catch (error) {
             res.status(500).json({error: "Erro ao listar pessoas"});
         }
+    },
+
+    async listarBairro(req, res){
+         try {
+             const bairros = await bairro.findAll();
+             res.status(200).json(bairros);
+         } catch (error) {
+             res.status(500).json({error: "Erro ao listar pessoas"});
+         }
     },
 
     async listar(req, res){

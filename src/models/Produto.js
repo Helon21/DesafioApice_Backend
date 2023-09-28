@@ -8,6 +8,11 @@ const produto = sequelize.define('Produto', {
         autoIncrement: true,
         allowNull: false,
     },
+    codigo: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
+    
     nome: {
         type: Sequelize.STRING,
         allowNull: false,

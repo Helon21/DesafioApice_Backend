@@ -12,6 +12,12 @@ const venda = sequelize.define('Venda', {
         autoIncrement: true,
         allowNull: false,
     },
+
+    codigo: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },  
+
     dataInicio: {
         type: Sequelize.DATEONLY,
         allowNull: false,

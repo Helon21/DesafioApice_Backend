@@ -36,6 +36,10 @@ const vendaItens = sequelize.define('VendaItens', {
             return quantidade * vr_venda;
         }
     },
+    codigo: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
 
 });
 

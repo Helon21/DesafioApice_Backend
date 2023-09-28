@@ -17,6 +17,7 @@ module.exports = {
                     nome: req.body.nome
                 }
             });
+
             if(cidadeExistente){
                 return res.status(400).json({error: "Nome já cadastrado"});
             };
@@ -29,6 +30,7 @@ module.exports = {
 
     async atualizarCadastro(req, res){
         const {id} = req.params;
+        console.log(req.body)
 
         try {
             const cidade = await Cidade.findByPk(id);

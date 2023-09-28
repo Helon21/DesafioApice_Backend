@@ -9,6 +9,10 @@ const bairro = sequelize.define('Bairro', {
         autoIncrement: true,
         allowNull: false,
     },
+    codigo: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
     nome: {
         type: Sequelize.STRING,
         allowNull: false,
